@@ -1,33 +1,42 @@
-//#include <wiringPi.h>
 #include <pigpio.h>
-#include <iostream>
-#include "BrushlessMotor.h"
-#include "RotaryCamera.h"
-#include "Timer.h"
-#include "BrushMotor.h"
-#include <chrono>
-#include <vector>
-#include "posix_serial.hpp"
-extern "C" {
-#include "packet.h"
-#include "imu_data_decode.h"
-}
+#include "Rov.h"
 #include "IMU.h"
-using namespace std;
+#include "AdditionalFunctions.h"
+#include <iostream>
+#include "UDPConnection.h"
+#include "BrushlessMotor.h"
+#include "ms5837.hpp"
+#include "ThrustersSubSystem.h"
 
-#define motor_1 5
-#define motor_2 6
-#define motor_3 13
-#define motor_4 19
-#define motor_5 26
-#define motor_6 21
-#define motor_7 20
-#define motor_8 16
+ThrustersSubSystem motors;
+UDPConnection udp;
+IMU imu;
+RovData data;
+
+//BrushlessMotor motor(17);
+//UDPConnection udp;
+//Rov rov;
 
 int main(void)
 {
 	gpioInitialise();
+	//udp.init();
+	imu.init();
+	//motors.init();
+	//gpioDelay(10000000);
+	//motor.write(100);
+	//gpioDelay(5000000);
+	
+	std::cout << "start" << std::endl;
+	//gpioDelay(5000000);
 
+	while (true)
+	{
+		imu.read(data);
+		//udp.write(data);
+		//udp.read(data);
+		//motors.write(data);
+	}
 	gpioTerminate();
 	return 0;
 }

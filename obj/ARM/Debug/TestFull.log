@@ -1,9 +1,3 @@
 ﻿  Проверка исходных файлов
-  Удаленное копирование исходных файлов в "169.254.76.105"
-  Проверка архитектуры
-  Проверка архитектуры
-  Запуск удаленной сборки.
-  Компиляция исходных файлов:
-  IMU.cpp
-  Связывание объектов
-  TestFull.vcxproj -> C:\Users\Vitaliy\source\repos\TestFull\TestFull\bin\ARM\Debug\TestFull.out
+  Удаленное копирование исходных файлов в "192.168.1.107"
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Application Type\Linux\1.0\Linux.targets(224,5): error : Не удалось подключиться к удаленной системе. Проверьте параметры подключения и убедитесь, что компьютер находится в сети и доступен.

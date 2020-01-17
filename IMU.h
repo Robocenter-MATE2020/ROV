@@ -1,13 +1,10 @@
-#include <iostream>
-#include <vector>
-#include "Timer.h"
-#include "RovData.h"
-#include "posix_serial.hpp"
+#ifndef IMU_H
+#define IMU_H
+
 #include "rov_device_types.h"
-extern "C" {
-#include "packet.h"
-#include "imu_data_decode.h"
-}
+
+class posix_serial;
+struct RovData;
 
 class IMU : public Input
 {
@@ -19,3 +16,5 @@ private:
 	//Timer* m_timer;
 	posix_serial* m_serial;
 };
+
+#endif

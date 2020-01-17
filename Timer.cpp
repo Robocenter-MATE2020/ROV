@@ -1,7 +1,5 @@
-#ifndef TIMER_H
-#define TIMER_H
-
 #include "Timer.h"
+#include <chrono>
 
 Timer::Timer()
 {
@@ -28,5 +26,3 @@ void Timer::stop()
 {
 	m_is_started = false;
 }
-
-#endif

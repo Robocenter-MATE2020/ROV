@@ -1,9 +1,10 @@
-#include "Motor.h"
-#include <pigpio.h>
-#include <stdint.h>
-#include "AdditionalFunctions.h"
+#ifndef LEVELMOTOR_H
+#define LEVELMOTOR_H
 
-class LevelMotor : public Motor {
+#include "Motor.h"
+
+class LevelMotor : public Motor 
+{
 public:
 	LevelMotor();
 	LevelMotor(uint8_t pin_left, uint8_t pin_right);
@@ -13,3 +14,4 @@ private:
 	uint8_t m_driver_left;
 	uint8_t m_driver_right;
 };
+#endif

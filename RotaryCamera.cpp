@@ -1,7 +1,7 @@
-#ifndef ROTARY_CAMERA_H
-#define ROTARY_CAMERA_H
-
 #include "RotaryCamera.h"
+#include <pigpio.h>
+#include "AdditionalFunctions.h"
+#include "Timer.h"
 
 #define DEF_ANGLE 0
 
@@ -35,5 +35,3 @@ void RotaryCamera::write(int8_t angle)
 		gpioServo(m_driver, map(constrain(m_angle, 0, 180), 0, 180, 1000, 2000));
 	}	
 }
-
-#endif

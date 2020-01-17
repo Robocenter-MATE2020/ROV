@@ -1,6 +1,3 @@
-#ifndef MOTOR_H
-#define MOTOR_H
-
 #include "Motor.h"
 
 bool Motor::get_inverse()
@@ -17,5 +14,3 @@ int8_t Motor::get_power()
 {
 	return m_power;
 }
-
-#endif

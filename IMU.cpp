@@ -1,7 +1,13 @@
-#ifndef IMU_H
-#define IMU_H
-
 #include "IMU.h"
+#include <iostream>
+#include <vector>
+#include "Timer.h"
+#include "RovData.h"
+#include "posix_serial.hpp"
+extern "C" {
+#include "packet.h"
+#include "imu_data_decode.h"
+}
 
 IMU::IMU()
 {
@@ -32,10 +38,9 @@ void IMU::read(RovData& rov_data)
 	rov_data.m_roll = eular[1];
 	rov_data.m_pitch = eular[0];
 	//std::cout << "time_elapsed = " << m_timer->elapsed() << std::endl;
-	//std::cout << "pitch = " << eular[0] << std::endl;
-	//std::cout << "roll = " << eular[1] << std::endl;
-	//std::cout << "yaw = " << eular[2] << std::endl;
+	std::cout << "pitch = " << eular[0] << std::endl;
+	std::cout << "roll = " << eular[1] << std::endl;
+	std::cout << "yaw = " << eular[2] << std::endl;
 	//gpioDelay(100);
 }
 
-#endif

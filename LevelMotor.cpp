@@ -1,7 +1,7 @@
-#ifndef LEVELMOTOR_H
-#define LEVELMOTOR_H
-
 #include "LevelMotor.h"
+#include <pigpio.h>
+#include <stdint.h>
+#include "AdditionalFunctions.h"
 
 LevelMotor::LevelMotor()
 {
@@ -37,5 +37,3 @@ void LevelMotor::set_power(int8_t power)
 		gpioWrite(m_driver_right, PI_HIGH);
 	}
 }
-
-#endif

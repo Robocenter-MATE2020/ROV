@@ -1,6 +1,9 @@
-#include <pigpio.h>
-#include "AdditionalFunctions.h"
-#include "Timer.h"
+#ifndef ROTARY_CAMERA_H
+#define ROTARY_CAMERA_H
+
+#include <stdint.h>
+
+class Timer;
 
 class RotaryCamera
 {
@@ -17,3 +20,5 @@ private:
 	uint8_t m_rotation_time;
 
 };
+
+#endif

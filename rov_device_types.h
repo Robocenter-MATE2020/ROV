@@ -5,18 +5,21 @@
 
 class Input
 {
+public:
 	virtual void init() = 0;
 	virtual void read(RovData& rov_data) = 0;
 };
 
 class Output
 {
+public:
 	virtual void init() = 0;
 	virtual void write(RovData& rov_data) = 0;
 };
 
 class InputOutput
 {
+public:
 	virtual void init() = 0;
 	virtual void read(RovData& rov_data) = 0;
 	virtual void write(RovData& rov_data) = 0;

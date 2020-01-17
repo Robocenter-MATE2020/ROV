@@ -1,16 +1,16 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include "Timer.h"
+#include <cstdint>
 
 /////////////////////////////////////////////////
 //////////////////Devices////////////////////////
 /////////////////////////////////////////////////
 
 
-#define OUTPUTSUBSYSTEM_ENABLE				0
+#define OUTPUTSUBSYSTEM_ENABLE				1
 #define INPUTSUBSYSTEM_ENABLE				1
-#define IOSUBSYSTEM_ENABLE					0
+#define IOSUBSYSTEM_ENABLE					1
 
 #define MANIPULATOR_ENABLE					0
 #define THRUSTERSSUBSYSTEM_ENABLE			0
@@ -76,20 +76,20 @@ constexpr uint8_t MANIPULATOR_ROTATE_RIGHT =	33;
 
 constexpr uint8_t H_FRONT_LEFT =				5;
 constexpr bool H_FRONT_LEFT_INVERSE =		false;
-constexpr uint8_t H_FRONT_RIGHT =				3;
+constexpr uint8_t H_FRONT_RIGHT =				6;
 constexpr bool H_FRONT_RIGHT_INVERSE =		 true;
-constexpr uint8_t H_BACK_LEFT =					4;
+constexpr uint8_t H_BACK_LEFT =					12;
 constexpr bool H_BACK_LEFT_INVERSE =		 true;
-constexpr uint8_t H_BACK_RIGHT =				6;
+constexpr uint8_t H_BACK_RIGHT =				13;
 constexpr bool H_BACK_RIGHT_INVERSE =		false;
 
-constexpr uint8_t V_FRONT_LEFT =				2;
+constexpr uint8_t V_FRONT_LEFT =				16;
 constexpr bool V_FRONT_LEFT_INVERSE =		 true;
-constexpr uint8_t V_FRONT_RIGHT =				44;
+constexpr uint8_t V_FRONT_RIGHT =				19;
 constexpr bool V_FRONT_RIGHT_INVERSE =		false;
-constexpr uint8_t V_BACK_LEFT =				   46;
+constexpr uint8_t V_BACK_LEFT =				   20;
 constexpr bool V_BACK_LEFT_INVERSE =		 true;
-constexpr uint8_t V_BACK_RIGHT =			   7;
+constexpr uint8_t V_BACK_RIGHT =			   26;
 constexpr bool V_BACK_RIGHT_INVERSE =		false;
 
 constexpr uint8_t THRUSTER_SIZE =				8;

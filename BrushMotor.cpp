@@ -1,7 +1,6 @@
-#ifndef BRUSHMOTOR_H
-#define BRUSHMOTOR_H
-
 #include "BrushMotor.h"
+#include <pigpio.h>
+#include "AdditionalFunctions.h"
 
 BrushMotor::BrushMotor(uint8_t pin_left, uint8_t pin_right)
 {
@@ -17,6 +16,8 @@ void BrushMotor::init()
 
 void BrushMotor::write(int8_t speed)
 {
+	m_power = constrain(speed, -100, 100);
+	m_power = m_is_inverse ? m_power * -1 : m_power;
 	if (speed > 0)
 	{
 		gpioWrite(m_pin_left, PI_LOW);
@@ -29,4 +30,3 @@ void BrushMotor::write(int8_t speed)
 	}
 }
 
-#endif

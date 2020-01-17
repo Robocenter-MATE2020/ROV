@@ -159,7 +159,8 @@ uint32_t Packet_Decode(uint8_t c)
                 status = kStatus_Cmd;
             break;
         case kStatus_Cmd:
-            RxPkt->type = c;
+
+			RxPkt->type = c;
             switch(RxPkt->type)
             {
                 case 0xA5:  /* Data */

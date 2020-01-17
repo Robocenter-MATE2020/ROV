@@ -1,8 +1,7 @@
-#pragma once
+#ifndef BRUSHMOTOR_H
+#define BRUSHMOTOR_H
 
 #include "Motor.h"
-#include <pigpio.h>
-#include "AdditionalFunctions.h"
 
 class BrushMotor : public Motor
 {
@@ -11,6 +10,9 @@ public:
 	void init();
 	void write(int8_t speed);
 private:
+	bool m_is_inverse = false;
 	unsigned m_pin_left;
 	unsigned m_pin_right;
 };
+
+#endif

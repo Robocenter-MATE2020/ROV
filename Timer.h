@@ -1,5 +1,5 @@
-#pragma once
-#include <chrono>
+#ifndef TIMER_H
+#define TIMER_H
 
 class Timer
 {
@@ -13,3 +13,5 @@ private:
 	bool m_is_started = false;
 	int m_starting_time = 0;
 };
+
+#endif

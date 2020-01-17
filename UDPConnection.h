@@ -1,25 +1,27 @@
+#ifndef UDP_CONNECTION_H
+#define UDP_CONNECTION_H
+
+#include <cstdint>
+#include "rov_device_types.h"
+#include "Timer.h"
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <memory.h>
-#include "Timer.h"
-#include "Config.h"
-#include "RovData.h"
-#include <cstddef>
-#include "rov_device_types.h"
+#include <unistd.h>
 
 
 struct InputPacket
 {
-	signed char button_data1 = 0;
-	signed char button_data2 = 0;
-	signed char button_data3 = 0;
+	//signed char button_data1 = 0;
+	//signed char button_data2 = 0;
+	//signed char button_data3 = 0;
 	int8_t axisX_p = 0; 
 	int8_t axisY_p = 0;    
 	int8_t axisZ_p = 0;   
 	int8_t axisW_p = 0;
-	int8_t camera_rotate = 0;
-	int8_t manipulator_rotate = 0;
+	//int8_t camera_rotate = 0;
+	//int8_t manipulator_rotate = 0;
 	//float Pitch = 149.0f;
 	//float Roll = 0.27f;
 };
@@ -30,8 +32,6 @@ struct OutputPacket
 	float roll = 0;
 	float pitch = 0;
 	float depth = 0;
-	float temperature = 0;
-	uint8_t core = 0;
 };
 
 class UDPConnection : public InputOutput
@@ -52,3 +52,5 @@ private:
 	bool is_settings = false;
 	bool button_3_release = false;
 };
+
+#endif
