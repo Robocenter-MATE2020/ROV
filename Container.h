@@ -1,7 +1,8 @@
 #pragma once
 
 #include <stdint.h>
-
+#include <memory.h>
+#include <string.h>
 
 template<class BaseType, std::size_t size_param>
 class PolymorphicArray {
@@ -38,27 +39,27 @@ public:
 		return m_data + m_size;
 	}
 
-	BaseTypePtr operator[](size_t idx) const
+	BaseTypePtr operator[](std::size_t idx) const
 	{
 		return m_data[idx];
 	}
-	BaseTypePtr &operator[](size_t idx)
+	BaseTypePtr &operator[](std::size_t idx)
 	{
 		return m_data[idx];
 	}
 
-	size_t size() const
+	std::size_t size() const
 	{
 		return m_size;
 	}
-	size_t capacity() const
+	std::size_t capacity() const
 	{
 		return size_param;
 	}
 
 private:
 	BaseTypePtr m_data[size_param];
-	size_t m_size;
+	std::size_t m_size;
 
 	PolymorphicArray(const PolymorphicArray<BaseType, size_param>&);
 	PolymorphicArray<BaseType, size_param> &operator=(const PolymorphicArray<BaseType, size_param> &rhs);

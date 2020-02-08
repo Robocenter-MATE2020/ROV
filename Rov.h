@@ -7,6 +7,7 @@ class ThrustersSubSystem;
 class UDPConnection;
 class IMU;
 class RotaryCameras;
+//class MS5837;
 
 class Rov {
 public:
@@ -18,6 +19,7 @@ public:
 	UDPConnection* m_udpconnection;
 	IMU* m_imu;
 	RotaryCameras* m_rotarycameras;
+	//MS5837* m_depthsensor;
 	//PolymorphicArray<SubSystem, SUBSYSTEM_SIZE> m_subsystem;
 };
 

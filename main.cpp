@@ -7,35 +7,32 @@
 #include "BrushlessMotor.h"
 #include "ms5837.hpp"
 #include "ThrustersSubSystem.h"
-
-ThrustersSubSystem motors;
-UDPConnection udp;
-IMU imu;
-RovData data;
+#include "Rov.h"
 
 //BrushlessMotor motor(17);
 //UDPConnection udp;
-//Rov rov;
+Rov rov;
 
 int main(void)
 {
 	gpioInitialise();
 	//udp.init();
-	imu.init();
+//	imu.init();
 	//motors.init();
 	//gpioDelay(10000000);
 	//motor.write(100);
 	//gpioDelay(5000000);
-	
-	std::cout << "start" << std::endl;
+	rov.init();
+	//std::cout << "start" << std::endl;
 	//gpioDelay(5000000);
 
 	while (true)
 	{
-		imu.read(data);
+		//imu.read(data);
 		//udp.write(data);
 		//udp.read(data);
 		//motors.write(data);
+		rov.run();
 	}
 	gpioTerminate();
 	return 0;

@@ -1,7 +1,6 @@
 #include <linux/i2c-dev.h>
-// #include <i2c/smbus.h>
+#include <linux/i2c.h>
 #include <fcntl.h>
-#include <cstdio>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -68,56 +67,57 @@ const bool MS5837::init() {
       log::interprit_errno();
       return false;
     }
-	uint8_t buf = C[i] & 0xFF;
-	C[i] = buf | (C[i] >> 8);
+    C[i] = (C[i] & 0xFF) << 8 | C[i] >> 8;
   }
-  char* buf = new char[64];
-
-  printf("\n");
-  for (uint16_t i : C) {
-	  printf("%x ", i);
-  }
-  printf("\n");
-  printf("%x, %x\n", C[0] >> 4, crc4(C));
-
-  if (C[0] >> 4 != crc4(C)) {
-	sprintf(buf, "Recieved and calculated ms5837's crc4 mismatch: %x and %x", C[0] >> 4, crc4(C));
-    log::error(buf);
+  if (C[0] >> 12 != crc4(C)) {
+    log::error("Recieved and calculated ms5837's crc4 mismatch");
     return false;
   }
   return true;
 }
 
 const bool MS5837::read() {
-  uint8_t command = 0x4A; // Получить рассчитанное D1
+  uint8_t command = 0x00; // Считать аналоговые данные
+  log::info("Reading actual data");
+  if (write(fd, &command, 1) != 1) {
+    log::interprit_errno();
+    return false;
+  }
+  usleep(1000);
+
+  command = 0x44; // Получить рассчитанное D1
   log::info("Reading ms5837 D1");
   if (write(fd, &command, 1) != 1) {
     log::interprit_errno();
     return false;
   }
-  usleep(20); // Считает
+  usleep(2200); // Считает
 
   if (::read(fd, &D1, 3) != 3) {
     log::interprit_errno();
     return false;
   }
+  // Порядок байт
+  D1 = ((D1 & 0xFF) << 16) | (D1 & 0xFF00) | ((D1 & 0xFF0000) >> 16);
 
-  command = 0x5A; // Получить рассчитанное D2
+  command = 0x54; // Получить рассчитанное D2
   log::info("Reading ms5837 D2");
   if (write(fd, &command, 1) != 1) {
     log::interprit_errno();
     return false;
   }
-  usleep(20); // Считает
+  usleep(2200); // Считает
 
   if (::read(fd, &D2, 3) != 3) {
     log::interprit_errno();
     return false;
   }
+  // Порядок байт
+  D2 = ((D2 & 0xFF) << 16) | (D2 & 0xFF00) | ((D2 & 0xFF0000) >> 16);
 
   // Оставь надежду, всяк сюда входящий
   // Рассчёт температуры и давления из показаний датчика
-	int32_t dT = 0;
+  int32_t dT = 0;
 	int64_t SENS = 0;
 	int64_t OFF = 0;
 	int32_t SENSi = 0;
